@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.Settings;
 import android.text.Layout;
 import android.text.TextUtils;
@@ -21,6 +22,7 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.DataOutputStream;
 import java.io.IOException;
 
 import static android.provider.Settings.ACTION_NOTIFICATION_LISTENER_SETTINGS;
@@ -101,19 +103,20 @@ public class MainActivity extends AppCompatActivity {
 
         sw2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                /*if (RootAccess.hasRootAccess()){
-                //TODO
-                }*/
-
                 if (isChecked) {
-                    SharedPreferences.Editor editor = sharedPreferences.edit();
-                    editor.putBoolean("sw2", true);
-                    editor.apply();
-                    sw2.setChecked(true);
-                    Toast.makeText(MainActivity.this, "Killer On", Toast.LENGTH_SHORT).show();
-                    if (sw1.isChecked()) {
-                        sw1.setChecked(false);
+                    if (RootAccess.hasRootAccess()){
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.putBoolean("sw2", true);
+                        editor.apply();
+                        sw2.setChecked(true);
+                        Toast.makeText(MainActivity.this, "Killer On", Toast.LENGTH_SHORT).show();
+                        if (sw1.isChecked()) {
+                            sw1.setChecked(false);
+                        }
+                    } else {
+                        sw2.setChecked(false);
                     }
+
                 } else {
                     SharedPreferences.Editor editor = sharedPreferences.edit();
                     editor.putBoolean("sw2", false);
