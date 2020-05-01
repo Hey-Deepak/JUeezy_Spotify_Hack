@@ -163,7 +163,7 @@ public class MainActivity extends AppCompatActivity {
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putString("id", trackId);
                 editor.apply();
-                
+
             }
         };
         registerReceiver(mReceiver, filter);
