@@ -49,9 +49,7 @@ public class NotificationListenerService extends android.service.notification.No
             return;
         }
 
-        pingMe(getApplicationContext());
-
-        if (isKill) {
+        if (isKill && RootAccess.hasRootAccess()) {
             Toast.makeText(this, "Kill Option", Toast.LENGTH_SHORT).show();
             if (isAd) {
                 //Kill the app
@@ -110,10 +108,5 @@ public class NotificationListenerService extends android.service.notification.No
         }
     }
 
-    public static void pingMe(Context context){
-        /*Log.d("DD", "NLC ping");
-        Toast.makeText(context, "Pingwa", Toast.LENGTH_SHORT).show();*/
-        return;
-    }
 
 }
