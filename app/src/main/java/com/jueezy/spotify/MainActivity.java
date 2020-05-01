@@ -163,11 +163,7 @@ public class MainActivity extends AppCompatActivity {
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putString("id", trackId);
                 editor.apply();
-
-                if (trackId != null){
-                    Log.d("DD", "MA ping");
-                    NotificationListenerService.pingMe(getApplicationContext());
-                }
+                
             }
         };
         registerReceiver(mReceiver, filter);
